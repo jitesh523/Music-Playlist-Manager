@@ -1,12 +1,6 @@
 from playlist import Playlist
 from utils import get_input, print_divider
 
-def sanitize_input(input_str):
-    """Sanitize user input to prevent potential injection vulnerabilities."""
-    sanitized = input_str.replace("<", "").replace(">", "").replace("&", "")
-    sanitized = sanitized.strip()
-    return sanitized
-
 def menu():
     print_divider()
     print("🎵 Music Playlist Manager")
@@ -22,20 +16,20 @@ def main():
 
     while True:
         menu()
-        choice = sanitize_input(get_input("Enter choice: "))
+        choice = get_input("Enter choice: ")
 
         if choice == "1":
-            title = sanitize_input(get_input("Enter song title: "))
-            artist = sanitize_input(get_input("Enter artist name: "))
-            duration = sanitize_input(get_input("Enter duration (mins): "))
+            title = get_input("Enter song title: ")
+            artist = get_input("Enter artist name: ")
+            duration = get_input("Enter duration (mins): ")
             playlist.add_song(title, artist, duration)
 
         elif choice == "2":
-            title = sanitize_input(get_input("Enter title to remove: "))
+            title = get_input("Enter title to remove: ")
             playlist.remove_song(title)
 
         elif choice == "3":
-            keyword = sanitize_input(get_input("Enter keyword to search: "))
+            keyword = get_input("Enter keyword to search: ")
             results = playlist.search(keyword)
             if results:
                 print("🔍 Results:")
